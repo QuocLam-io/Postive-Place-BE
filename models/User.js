@@ -12,7 +12,7 @@ function hashing(password) {
   return bcyrpt.hashSync(password, salt);
 }
 
-const Users = new Schema({
+const User = new Schema({
   username: {
     type: String,
     required: true,
@@ -22,7 +22,8 @@ const Users = new Schema({
     type: String,
     set: hashing,
     required: true,
+    select: false,
   },
 });
 
-module.exports = mongoose.model("Users", Users);
+module.exports = mongoose.model("User", User);

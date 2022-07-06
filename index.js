@@ -9,4 +9,4 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors());
 
-app.listen(3001, () => console.log("End the server of my life!"));
+app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));
