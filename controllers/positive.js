@@ -7,8 +7,8 @@ const User = require("../models/User");
 router.get("/", (req, res) => {
   User.findById(req.session.userId)
     .populate("positives")
-    .then((entries) => {
-      res.json(entries)
+    .then((user) => {
+      res.json(user.positives);
     })
     .catch((error) => console.log(error));
 });

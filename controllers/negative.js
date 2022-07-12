@@ -7,14 +7,10 @@ const User = require("../models/User");
 router.get("/", (req, res) => {
   User.findById(req.session.userId)
     .populate("negatives")
-    .then((entries) => {
-      res.json(entries)
+    .then((user) => {
+      res.json(user.negatives);
     })
     .catch((error) => console.log(error));
-});
-
-router.get("/", (req, res) => {
-  res.json({ message: "RAGE RAGE FUCKING RAGE!!!" });
 });
 
 router.post("/", (req, res) => {
