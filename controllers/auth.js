@@ -7,24 +7,32 @@ const User = require("../models/User");
 
 /* ------------------------------ Signup Route ------------------------------ */
 router.post("/signup", (req, res) => {
-  User.create({
-    username: req.body.username,
-    password: req.body.password,
-  }).then((result) => {
-    req.session.userId = result.id;
-    res.json(result);
-  }).catch((error)=>{
-    res.status(400).end("Hang yourself");
-  });
-})
-
-router.get("/me", (req, res) =>{
-  if (req.session.userId) {
-    res.json({isLoggedIn: true});
+  if (req.body.username === "" || req.body.password === "") {
+    res
+      .status(400)
+      .json({ message: "Please provide a username and password." });
   } else {
-    res.json({isLoggedIn: false});
+    User.create({
+      username: req.body.username,
+      password: req.body.password,
+    })
+      .then((result) => {
+        req.session.userId = result.id;
+        res.json(result);
+      })
+      .catch((error) => {
+        res.status(400).end("Fine, I'll be an adult!");
+      });
   }
-})
+});
+
+router.get("/me", (req, res) => {
+  if (req.session.userId) {
+    res.json({ isLoggedIn: true });
+  } else {
+    res.json({ isLoggedIn: false });
+  }
+});
 
 /* ------------------------------- Login Route ------------------------------ */
 router.post("/login", async (req, res) => {
@@ -46,10 +54,10 @@ router.post("/login", async (req, res) => {
 
 /* ------------------------------ Logout Route ------------------------------ */
 
-router.post("/logout", (req, res)=>{
+router.post("/logout", (req, res) => {
   req.session.destroy();
-  res.json({message: "Goodbye Jillian"})
-})
+  res.json({ message: "Goodbye Jillian" });
+});
 
 /* -------------------------------------------------------------------------- */
 module.exports = router;
