@@ -2,9 +2,15 @@ const express = require("express");
 const router = express.Router();
 
 const Positive = require("../models/Positive");
+const User = require("../models/User");
 
 router.get("/", (req, res) => {
-  res.json({ message: "ARE YOU HAPPY YET?!" });
+  User.findById(req.session.userId)
+    .populate("positives")
+    .then((entries) => {
+      res.json(entries)
+    })
+    .catch((error) => console.log(error));
 });
 
 router.post("/", (req, res) => {
