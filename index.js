@@ -4,6 +4,7 @@ const session = require("express-session");
 require("dotenv").config();
 // app.set('trust proxy,', 1);
 const authRouter = require("./controllers/auth");
+const apiRouter = require("./controllers/api");
 
 const sess = {
   secret: process.env.SECRET_KEY,
@@ -23,12 +24,14 @@ if (process.env.ENVIRONMENT === "production") {
 const parser = require("body-parser");
 const cors = require("cors");
 
-//MiddleWare
+//!* ------------------------------- Middleware ------------------------------- */
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors());
 app.use(session(sess));//Creates a session
-//Middleware before routes to activate
+//*Middleware before routes to activate
 app.use("/auth", authRouter)
+app.use("/api", apiRouter)
+//* -------------------------------------------------------------------------- */
 
 app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));

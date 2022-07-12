@@ -24,6 +24,14 @@ const User = new Schema({
     required: true,
     select: false,
   },
+  positives:[{
+    type: Schema.Types.ObjectId,
+    ref: "Positive",
+  }],
+  negatives:[{
+    type: Schema.Types.ObjectId,
+    ref: "Negative",
+  }]
 });
 
 module.exports = mongoose.model("User", User);

@@ -13,16 +13,27 @@ router.post("/signup", (req, res) => {
   }).then((result) => {
     req.session.userId = result.id;
     res.json(result);
+  }).catch((error)=>{
+    res.status(400).end("Hang yourself");
   });
-});
+})
+
+router.get("/me", (req, res) =>{
+  if (req.session.userId) {
+    res.json({isLoggedIn: true});
+  } else {
+    res.json({isLoggedIn: false});
+  }
+})
 
 /* ------------------------------- Login Route ------------------------------ */
 router.post("/login", async (req, res) => {
   const result = await User.findOne({
     username: req.body.username,
   }).select("+password");
+  //Read the doc for "select("+password")"
 
-  /* --------------------------------- Bcrypt --------------------------------- */
+  /* ------ Bcrypt ------- */
   const isMatch = await bcrypt.compare(req.body.password, result.password);
 
   if (isMatch) {
@@ -32,5 +43,13 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ message: "Invalid Credentials" });
   }
 });
+
+/* ------------------------------ Logout Route ------------------------------ */
+
+router.post("/logout", (req, res)=>{
+  req.session.destroy();
+  res.json({message: "Goodbye Jillian"})
+})
+
 /* -------------------------------------------------------------------------- */
 module.exports = router;
