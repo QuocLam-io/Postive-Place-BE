@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const Negative = require("../models/Negative");
-const User = require("../models/User");
 
 router.get("/", (req, res) => {
-  User.findById(req.session.userId)
-    .populate("negatives")
-    .then((user) => {
-      res.json(user.negatives);
+  Negative.find({user: req.session.userId})
+    // .populate("positives")
+    .then((negativeEntries) => {
+      console.log(negativeEntries);
+      res.json(negativeEntries);
     })
     .catch((error) => console.log(error));
 });
@@ -18,9 +18,9 @@ router.post("/", (req, res) => {
     todayOne: req.body.todayOne,
     todayTwo: req.body.todayTwo,
     todayThree: req.body.todayThree,
-    generalOne: req.body.generalOne,
-    generalTwo: req.body.generalTwo,
-    generalThree: req.body.generalThree,
+    // generalOne: req.body.generalOne,
+    // generalTwo: req.body.generalTwo,
+    // generalThree: req.body.generalThree,
     day: new Date().getTime(),
     user: req.session.userId,
   }).then((newEntry) => {
@@ -35,9 +35,9 @@ router.put("/:entry", (req, res) => {
       todayOne: req.body.todayOne,
       todayTwo: req.body.todayTwo,
       todayThree: req.body.todayThree,
-      generalOne: req.body.generalOne,
-      generalTwo: req.body.generalTwo,
-      generalThree: req.body.generalThree,
+      // generalOne: req.body.generalOne,
+      // generalTwo: req.body.generalTwo,
+      // generalThree: req.body.generalThree,
     }
   ).then((updatedEntry) => {
     res.json(updatedEntry);

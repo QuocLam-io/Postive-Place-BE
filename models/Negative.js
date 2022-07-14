@@ -5,9 +5,9 @@ const Negative = new Schema({
   todayOne: String,
   todayTwo: String,
   todayThree: String,
-  generalOne: String,
-  generalTwo: String,
-  generalThree: String,
+  // generalOne: String,
+  // generalTwo: String,
+  // generalThree: String,
   day: Date,
   user: {
     type: Schema.Types.ObjectId,
