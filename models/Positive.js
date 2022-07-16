@@ -5,10 +5,8 @@ const Positive = new Schema({
   todayOne: String,
   todayTwo: String,
   todayThree: String,
-  // generalOne: String,
-  // generalTwo: String,
-  // generalThree: String,
-  day: Date,
+  // day: Date,
+  day: String,
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

@@ -35,3 +35,5 @@ app.use("/api", apiRouter);
 //* -------------------------------------------------------------------------- */
 
 app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));
+
+// this is a test

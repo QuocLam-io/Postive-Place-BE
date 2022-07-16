@@ -10,7 +10,7 @@ router.post("/signup", (req, res) => {
   if (req.body.username === "" || req.body.password === "") {
     res
       .status(400)
-      .json({ message: "Please provide a username and password." });
+      .json({ message: "Just type something in" });
   } else {
     User.create({
       username: req.body.username,
