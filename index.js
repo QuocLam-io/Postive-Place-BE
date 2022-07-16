@@ -34,6 +34,11 @@ app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 //* -------------------------------------------------------------------------- */
 
-app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));
+app.set("port", process.env.PORT || 3001);
 
-// this is a test
+app.listen(app.get("port"), () => {
+  console.log(`I'm not serving anything but I'm alive`);
+});
+
+// app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));
+
