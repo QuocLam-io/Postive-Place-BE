@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 // const session = require("express-session");
-const session = require("cookie-session");
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 // app.set('trust proxy,', 1);
@@ -32,7 +32,7 @@ const cors = require("cors");
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors());
-app.use(cookieParser());
+app.use(cookieParser(process.env.SECRET_KEY));
 app.use(session(sess)); //Creates a session
 //*Middleware before routes to activate
 app.use("/auth", authRouter);
