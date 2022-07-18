@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const session = require("express-session");
+// const session = require("express-session");
+const session = require("cookie-session");
 require("dotenv").config();
 // app.set('trust proxy,', 1);
 const authRouter = require("./controllers/auth");
