@@ -56,7 +56,8 @@ router.post("/login", async (req, res) => {
 /* ------------------------------ Logout Route ------------------------------ */
 
 router.post("/logout", (req, res) => {
-  req.session.destroy();
+  // req.session.destroy();
+  req.session = null;
   res.json({ message: "Goodbye Jillian" });
 });
 
