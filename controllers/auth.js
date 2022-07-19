@@ -7,9 +7,10 @@ const User = require("../models/User");
 
 /* ------------------------------ Signup Route ------------------------------ */
 router.post("/signup", (req, res) => {
-  console.log(req.body);
   if (req.body.username === "" || req.body.password === "") {
-    res.status(400).json({ message: "Just type something in" });
+    res
+      .status(400)
+      .json({ message: "Just type something in" });
   } else {
     User.create({
       username: req.body.username,
@@ -45,7 +46,7 @@ router.post("/login", async (req, res) => {
 
   if (isMatch) {
     req.session.userId = result.id;
-
+    
     res.json(result);
   } else {
     res.status(400).json({ message: "Invalid Credentials" });

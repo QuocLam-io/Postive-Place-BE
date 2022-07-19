@@ -20,7 +20,7 @@ if (process.env.ENVIRONMENT === "development") {
 }
 
 if (process.env.ENVIRONMENT === "production") {
-  sess.cookie.secure = true;
+  sess.cookie.secure = false;
 }
 
 // console.log(sess.cookie.secure); Cannot make a key-pair value for a key-pair value that doesn't exist
