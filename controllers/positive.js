@@ -5,7 +5,8 @@ const moment = require("moment");
 const Positive = require("../models/Positive");
 
 router.get("/", (req, res) => {
-  Positive.find({user: req.session.userId})
+  console.log(req.session.userId);
+  Positive.find({ user: req.session.userId })
     .then((positiveEntries) => {
       console.log(positiveEntries);
       res.json(positiveEntries);
@@ -13,13 +14,13 @@ router.get("/", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-router.get("/:id", (req, res)=>{
+router.get("/:id", (req, res) => {
   Positive.findById(req.params.id)
-    .then((positiveEntry)=>{
+    .then((positiveEntry) => {
       res.json(positiveEntry);
     })
-    .catch((error)=>console.log(error));
-})
+    .catch((error) => console.log(error));
+});
 
 router.post("/", (req, res) => {
   Positive.create({
@@ -27,7 +28,7 @@ router.post("/", (req, res) => {
     todayTwo: req.body.todayTwo,
     todayThree: req.body.todayThree,
     // day: new Date().getTime(),
-day: moment().format("MMMM Do YYYY"),
+    day: moment().format("MMMM Do YYYY"),
     user: req.session.userId,
   }).then((newEntry) => {
     console.log(newEntry);
