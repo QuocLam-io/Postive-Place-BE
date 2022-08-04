@@ -8,17 +8,21 @@ const User = require("../models/User");
 /* ------------------------------ Signup Route ------------------------------ */
 router.post("/signup", (req, res) => {
   if (req.body.username === "" || req.body.password === "") {
-    res
-      .status(400)
-      .json({ message: "Just type something in" });
+    res.status(400).json({ message: "Just type something in" });
   } else {
     User.create({
       username: req.body.username,
       password: req.body.password,
     })
       .then((result) => {
-        req.session.userId = result.id;
-        res.json(result);
+        req.session.regenerate(function (err) {
+          if (err) next(err);
+          req.session.userId = result.id;
+          req.session.save(function (err) {
+            if (err) return next(err);
+            res.json(result);
+          });
+        });
       })
       .catch((error) => {
         res.status(400).end("Fine, I'll be an adult!");
@@ -46,7 +50,7 @@ router.post("/login", async (req, res) => {
 
   if (isMatch) {
     req.session.userId = result.id;
-    
+
     res.json(result);
   } else {
     res.status(400).json({ message: "Invalid Credentials" });
