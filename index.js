@@ -28,7 +28,7 @@ store.on('error', function(error) {
 const sess = {
   secret: process.env.SECRET_KEY,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {},
   store: store
 };
