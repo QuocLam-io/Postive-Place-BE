@@ -20,7 +20,6 @@ if (process.env.ENVIRONMENT === "development") {
 if (process.env.ENVIRONMENT === "production") {
   sess.cookie.secure = true;
 }
-
 // console.log(sess.cookie.secure); Cannot make a key-pair value for a key-pair value that doesn't exist
 
 const parser = require("body-parser");
@@ -32,7 +31,9 @@ app.use(parser.json());
 app.use(cors());
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use(session(sess)); //Creates a session
+
 //*Middleware before routes to activate
+
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 //* -------------------------------------------------------------------------- */
@@ -43,4 +44,3 @@ app.listen(app.get("port"), () => {
   console.log(`I'm not serving anything but I'm alive`);
 });
 
-// app.listen(3001, () => console.log("I'm not serving anything but I'm alive"));
