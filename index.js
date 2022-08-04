@@ -1,16 +1,36 @@
 const express = require("express");
-const app = express();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const authRouter = require("./controllers/auth");
 const apiRouter = require("./controllers/api");
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const app = express();
+
+let mongoURI = "";
+
+if (process.env.NODE_ENV === "production") {
+  mongoURI = process.env.DB_URL;
+} else {
+  mongoURI = "mongodb://localhost/positive-place_db";
+}
+
+const store = new MongoDBStore({
+  uri: mongoURI,
+  collection: 'sessions'
+})
+
+store.on('error', function(error) {
+  console.log(error);
+});
 
 const sess = {
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
   cookie: {},
+  store: store
 };
 
 if (process.env.ENVIRONMENT === "development") {
