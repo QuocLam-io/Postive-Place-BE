@@ -4,7 +4,7 @@ const positiveRouter = require("./positive")
 const negativeRouter = require("./negative")
 
 const authenticator = (req, res, next) => {
-  console.log(req.session.userId, "logging my life away");
+  console.log(req.session, "logging my life away");
   if (req.session.userId) {
     next();
   } else {

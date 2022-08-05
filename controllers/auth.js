@@ -16,7 +16,7 @@ router.post("/signup", (req, res) => {
     })
       .then((result) => {
         req.session.regenerate(function (err) {
-          console.log(result)
+          console.log(result.id, "this is the result id");
           if (err) next(err);
           req.session.userId = result._id;
           req.session.save(function (err) {
