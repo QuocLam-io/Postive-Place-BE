@@ -24,6 +24,7 @@ router.post("/signup", (req, res) => {
             if (err) return next(err);
             res.json(result);
           });
+          console.log(req.session, "this is the session?");
         });
       })
       .catch((error) => {
