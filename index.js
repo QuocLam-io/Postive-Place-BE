@@ -56,6 +56,7 @@ app.use(cors({
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cookieParser(process.env.SECRET_KEY));
+app.enable("trust proxy");
 app.use(session(sess)); //Creates a session
 
 //*Middleware before routes to activate
