@@ -55,7 +55,6 @@ app.use(
   cors({
     origin: true,
     credentials: true,
-    preflightContinue: true,
   })
 );
 app.use(parser.urlencoded({ extended: true }));
