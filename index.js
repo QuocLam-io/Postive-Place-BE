@@ -49,14 +49,14 @@ const parser = require("body-parser");
 const cors = require("cors");
 
 //!* ------------------------------- Middleware ------------------------------- */
+app.enable("trust proxy");
 app.use(cors({
-  origin: true,
+  origin: "https://positive-place-be.herokuapp.com/",
   credentials: true,
 }));
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cookieParser(process.env.SECRET_KEY));
-app.enable("trust proxy");
 app.use(session(sess)); //Creates a session
 
 //*Middleware before routes to activate
