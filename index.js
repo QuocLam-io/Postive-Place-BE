@@ -52,7 +52,7 @@ const cors = require("cors");
 //!* ------------------------------- Middleware ------------------------------- */
 app.enable("trust proxy");
 app.use(cors({
-  origin: "http://positive-place.netlify.app",
+  origin: "https://positive-place.netlify.app/",
   credentials: true,
 }));
 app.use(parser.urlencoded({ extended: true }));
