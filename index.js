@@ -31,6 +31,7 @@ const sess = {
   saveUninitialized: true,
   cookie: {
     sameSite: false,
+    httpOnly: true,
   },
   store: store
 };
@@ -51,7 +52,7 @@ const cors = require("cors");
 //!* ------------------------------- Middleware ------------------------------- */
 app.enable("trust proxy");
 app.use(cors({
-  origin: "https://positive-place-be.herokuapp.com/",
+  origin: "http://positive-place.netlify.app",
   credentials: true,
 }));
 app.use(parser.urlencoded({ extended: true }));
