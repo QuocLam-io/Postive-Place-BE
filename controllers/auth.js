@@ -20,6 +20,7 @@ router.post("/signup", (req, res) => {
           if (err) next(err);
           req.session.userId = result._id;
           req.session.save(function (err) {
+            console.log(req.session, "this is the session");
             if (err) return next(err);
             res.json(result);
           });
