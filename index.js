@@ -27,7 +27,7 @@ store.on('error', function(error) {
 
 const sess = {
   secret: process.env.SECRET_KEY,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {},
   store: store
@@ -49,7 +49,9 @@ const cors = require("cors");
 //!* ------------------------------- Middleware ------------------------------- */
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
-app.use(cors());
+app.use(cors({
+  origin: true,
+}));
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use(session(sess)); //Creates a session
 
