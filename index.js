@@ -29,7 +29,9 @@ const sess = {
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
-  cookie: {},
+  cookie: {
+    sameSite: false,
+  },
   store: store
 };
 console.log(sess.secret, "this has been handy");
@@ -51,7 +53,8 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors({
   origin: true,
-  credentials: true
+  credentials: true,
+  
 }));
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use(session(sess)); //Creates a session
