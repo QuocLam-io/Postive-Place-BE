@@ -32,7 +32,7 @@ const sess = {
   // cookie: {},
   // store: store
 };
-console.log(ses.secret, "this has been handy");
+console.log(sess.secret, "this has been handy");
 
 // if (process.env.ENVIRONMENT === "development") {
 //   sess.cookie.secure = false;
