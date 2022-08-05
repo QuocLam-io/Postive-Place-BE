@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const authRouter = require("./controllers/auth");
 const apiRouter = require("./controllers/api");
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const app = express();
 
@@ -18,10 +18,10 @@ if (process.env.NODE_ENV === "production") {
 
 const store = new MongoDBStore({
   uri: mongoURI,
-  collection: 'sessions'
-})
+  collection: "sessions",
+});
 
-store.on('error', function(error) {
+store.on("error", function (error) {
   console.log(error);
 });
 
@@ -33,7 +33,7 @@ const sess = {
     sameSite: false,
     httpOnly: true,
   },
-  store: store
+  store: store,
 };
 console.log(sess.secret, "this has been handy");
 
@@ -51,10 +51,13 @@ const cors = require("cors");
 
 //!* ------------------------------- Middleware ------------------------------- */
 app.enable("trust proxy");
-app.use(cors({
-  origin: true,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    preflightContinue: true,
+  })
+);
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cookieParser(process.env.SECRET_KEY));
@@ -71,4 +74,3 @@ app.set("port", process.env.PORT || 3001);
 app.listen(app.get("port"), () => {
   console.log(`I'm not serving anything but I'm alive`);
 });
-
