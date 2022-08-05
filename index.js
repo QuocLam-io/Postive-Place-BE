@@ -27,19 +27,19 @@ store.on('error', function(error) {
 
 const sess = {
   secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {},
-  store: store
+  // resave: false,
+  // saveUninitialized: true,
+  // cookie: {},
+  // store: store
 };
 
-if (process.env.ENVIRONMENT === "development") {
-  sess.cookie.secure = false;
-}
+// if (process.env.ENVIRONMENT === "development") {
+//   sess.cookie.secure = false;
+// }
 
-if (process.env.ENVIRONMENT === "production") {
-  sess.cookie.secure = false;
-}
+// if (process.env.ENVIRONMENT === "production") {
+//   sess.cookie.secure = false;
+// }
 // console.log(sess.cookie.secure); Cannot make a key-pair value for a key-pair value that doesn't exist
 
 const parser = require("body-parser");
