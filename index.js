@@ -30,31 +30,32 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   cookie: {
-    sameSite: false,
-    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    // httpOnly: true,
   },
   store: store,
 };
 console.log(sess.secret, "this has been handy");
 
-if (process.env.ENVIRONMENT === "development") {
-  sess.cookie.secure = false;
-}
+// if (process.env.ENVIRONMENT === "development") {
+//   sess.cookie.secure = false;
+// }
 
-if (process.env.ENVIRONMENT === "production") {
-  sess.cookie.secure = false;
-}
+// if (process.env.ENVIRONMENT === "production") {
+//   sess.cookie.secure = false;
+// }
 // console.log(sess.cookie.secure); Cannot make a key-pair value for a key-pair value that doesn't exist
 
 const parser = require("body-parser");
 const cors = require("cors");
 
 //!* ------------------------------- Middleware ------------------------------- */
-app.enable("trust proxy");
+app.set("trust proxy", 1);
 app.use(
   cors({
-    origin: true,
     credentials: true,
+    origin: ["https://positive-place.netlify.app"],
   })
 );
 app.use(parser.urlencoded({ extended: true }));
