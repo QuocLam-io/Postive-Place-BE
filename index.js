@@ -25,6 +25,7 @@ store.on("error", function (error) {
 });
 
 const sess = {
+  
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
@@ -46,6 +47,7 @@ const cors = require("cors");
 app.set("trust proxy", 1);
 app.use(
   cors({
+    Access-Control-Allow-Origin: "*",
     credentials: true,
     origin: ["https://positive-place.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
