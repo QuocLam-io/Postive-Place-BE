@@ -5,7 +5,6 @@ require("dotenv").config();
 const authRouter = require("./controllers/auth");
 const apiRouter = require("./controllers/api");
 const MongoDBStore = require("connect-mongodb-session")(session);
-
 const app = express();
 
 let mongoURI = "";
@@ -38,13 +37,6 @@ const sess = {
 };
 console.log(sess.secret, "this has been handy");
 
-// if (process.env.ENVIRONMENT === "development") {
-//   sess.cookie.secure = false;
-// }
-
-// if (process.env.ENVIRONMENT === "production") {
-//   sess.cookie.secure = false;
-// }
 // console.log(sess.cookie.secure); Cannot make a key-pair value for a key-pair value that doesn't exist
 
 const parser = require("body-parser");
@@ -56,6 +48,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["https://positive-place.netlify.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(parser.urlencoded({ extended: true }));
