@@ -50,7 +50,7 @@ app.use(
     // Access-Control-Allow-Origin: "https://positive-place.netlify.app",
     credentials: true,
     origin: ["https://positive-place.netlify.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    // methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(parser.urlencoded({ extended: true }));
@@ -63,6 +63,12 @@ app.use(session(sess)); //Creates a session
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 //* -------------------------------------------------------------------------- */
+
+router.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+
 
 app.set("port", process.env.PORT || 3001);
 
