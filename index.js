@@ -49,7 +49,7 @@ app.use(
   cors({
     // Access-Control-Allow-Origin: "https://positive-place.netlify.app",
     credentials: true,
-    origin: "https://positive-place.netlify.app",
+    origin: ["https://positive-place.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
