@@ -47,18 +47,24 @@ router.post("/login", async (req, res) => {
     username: req.body.username,
   }).select("+password");
   //Read the doc for "select("+password")"
-
-  /* ------ Bcrypt ------- */
-  const isMatch = await bcrypt.compare(req.body.password, result.password);
-
-  if (isMatch) {
-    req.session.userId = result.id;
-
-    res.json(result);
+  if (!result) {
+    res.status(400).json({ message: "User not found" });
   } else {
-    res.status(400).json({ message: "Invalid Credentials" });
+
+    /* ------ Bcrypt ------- */
+    
+    const isMatch = await bcrypt.compare(req.body.password, result.password);
+
+    if (isMatch) {
+      req.session.userId = result.id;
+      res.json(result);
+    } else {
+      res.status(400).json({ message: "Invalid Credentials" });
+    }
   }
 });
+
+
 
 /* ------------------------------ Logout Route ------------------------------ */
 
