@@ -64,9 +64,9 @@ app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 //* -------------------------------------------------------------------------- */
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// })
+app.get("/", (req, res) => {
+  res.send("Hello World");
+})
 
 
 app.set("port", process.env.PORT || 3001);
