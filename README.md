@@ -42,5 +42,8 @@ Positive Place was designed to provide an easily accessible and low effort servi
 
 ![Screen Shot 2022-09-12 at 8 48 44 PM](https://user-images.githubusercontent.com/82473096/189783531-13fd6153-da41-4112-867f-2b5d08906853.png)
 
+![Screen Shot 2022-09-12 at 8 56 54 PM](https://user-images.githubusercontent.com/82473096/189784294-e89652e2-22ba-427b-a62d-d63a402eb872.png)
+
+
 ## Project Status
 Project is: _finished_ (pending whether Heroku follows through with dismantling their free tier)
