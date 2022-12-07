@@ -46,4 +46,4 @@ Positive Place was designed to provide an easily accessible and low effort servi
 
 
 ## Project Status
-Project is: _finished_ (pending whether Heroku follows through with dismantling their free tier)
+Project is: _finished_
